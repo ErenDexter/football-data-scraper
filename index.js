@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
     .then(function (data) {
       const $ = cheerio.load(data.data);
 
-      $(".menu-section.main-nav.header-nav").remove();
+      //$(".menu-section.main-nav.header-nav").remove();
       $(".widget_albatrteblist.container-wrapper").remove();
       $(".widget_categories.Alba-widget-categories.container-wrapper").remove();
       $(".sidebar.is-sticky").remove();
