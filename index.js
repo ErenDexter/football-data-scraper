@@ -1,14 +1,16 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const path = require("path");
 const cors = require("cors");
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
 
 app.get("/", (req, res) => {
   axios
-    .get("https://jdwel.com/today/", {
+    .get("https://www.as-goal.com/mm/", {
       headers: {
         "Access-Control-Allow-Origin": "*",
         Accept: "application/json",
@@ -19,12 +21,18 @@ app.get("/", (req, res) => {
     .then(function (data) {
       const $ = cheerio.load(data.data);
 
-      //$(".submenu.row.justify-content-end").remove();
+      $(".menu-section.main-nav.header-nav").remove();
+      $(".widget_albatrteblist.container-wrapper").remove();
+      $(".widget_categories.Alba-widget-categories.container-wrapper").remove();
+      $(".sidebar.is-sticky").remove();
+      $(".container-wrapper").remove();
+      $(".lnfo").remove();
+      $("#footer").remove();
       //$(".matches_datepicker").remove();
 
       //const content = $(".matches_frame");
       //console.log(content.html());
-      res.send(data.data);
+      res.send($.html());
     })
     .catch((error) => {
       console.log(error);
