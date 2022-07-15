@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
     .then(function (data) {
       const $ = cheerio.load(data.data);
 
-      //$(".menu-section.main-nav.header-nav").remove();
+      $(".menu-section.main-nav.header-nav").remove();
       $(".widget_albatrteblist.container-wrapper").remove();
       $(".widget_categories.Alba-widget-categories.container-wrapper").remove();
       $(".sidebar.is-sticky").remove();
@@ -28,6 +28,12 @@ app.get("/", (req, res) => {
       $("#footer").remove();
       $(".grid-container").remove();
       $("#fixedban > div > div:nth-child(4)").remove();
+      $("#Today > div.albaflex").wrapAll(
+        '<div style="pointer-events: none;"></div>'
+      );
+      $("#Tomorrow > div.albaflex").wrapAll(
+        '<div style="pointer-events: none;"></div>'
+      );
       //$(".matches_datepicker").remove();
 
       //const content = $(".matches_frame");
