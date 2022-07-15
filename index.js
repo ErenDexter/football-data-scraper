@@ -22,7 +22,7 @@ app.get("/getdata", (req, res) => {
 
   //     const content = $(".matches_frame");
   //console.log(content.html());
-  res.send(content.html());
+  res.send("success");
   // })
   // .catch((error) => {
   //   console.log(error);
