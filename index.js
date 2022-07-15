@@ -19,12 +19,12 @@ app.get("/", (req, res) => {
     .then(function (data) {
       const $ = cheerio.load(data.data);
 
-      $(".submenu.row.justify-content-end").remove();
-      $(".matches_datepicker").remove();
+      //$(".submenu.row.justify-content-end").remove();
+      //$(".matches_datepicker").remove();
 
-      const content = $(".matches_frame");
+      //const content = $(".matches_frame");
       //console.log(content.html());
-      res.send(content.html());
+      res.send(data.data);
     })
     .catch((error) => {
       console.log(error);
