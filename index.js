@@ -26,6 +26,8 @@ app.get("/", (req, res) => {
       $(".container-wrapper").remove();
       $(".lnfo").remove();
       $("#footer").remove();
+      $(".grid-container").remove();
+      $("#fixedban > div > div:nth-child(4)").remove();
       //$(".matches_datepicker").remove();
 
       //const content = $(".matches_frame");
