@@ -1,9 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const path = require("path");
 const cors = require("cors");
-const fs = require("fs");
 
 const app = express();
 app.use(cors());
