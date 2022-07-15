@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 
 const app = express();
 
-app.get("/getdata", (req, res) => {
+app.get("/", (req, res) => {
   // axios
   //   .get("https://jdwel.com/today/", {
   //     headers: {
@@ -30,7 +30,7 @@ app.get("/getdata", (req, res) => {
   // });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}`);
