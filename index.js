@@ -44,6 +44,12 @@ app.get("/football/schedule", (req, res) => {
           const $$ = cheerio.load(data);
           $(".AlbaTableTitle").remove();
           $$($(".AlbaSposrTable-sc").html()).appendTo(".AlbaSposrTable-sc");
+          $$("#Today > div.albaflex").wrapAll(
+            '<div style="pointer-events: none;"></div>'
+          );
+          $$("#Tomorrow > div.albaflex").wrapAll(
+            '<div style="pointer-events: none;"></div>'
+          );
           res.send($$.html());
         }
       });
