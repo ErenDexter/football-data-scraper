@@ -2,11 +2,12 @@ const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const cors = require("cors");
+const fs = require("fs");
 
 const app = express();
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/football/schedule", (req, res) => {
   axios
     .get("https://www.as-goal.com/mm/", {
       headers: {
@@ -19,26 +20,33 @@ app.get("/", (req, res) => {
     .then(function (data) {
       const $ = cheerio.load(data.data);
 
-      $(".menu-section.main-nav.header-nav").remove();
-      $(".widget_albatrteblist.container-wrapper").remove();
-      $(".widget_categories.Alba-widget-categories.container-wrapper").remove();
-      $(".sidebar.is-sticky").remove();
-      $(".container-wrapper").remove();
-      $(".lnfo").remove();
-      $("#footer").remove();
-      $(".grid-container").remove();
-      $("#fixedban > div > div:nth-child(4)").remove();
-      $("#Today > div.albaflex").wrapAll(
-        '<div style="pointer-events: none;"></div>'
-      );
-      $("#Tomorrow > div.albaflex").wrapAll(
-        '<div style="pointer-events: none;"></div>'
-      );
-      //$(".matches_datepicker").remove();
+      // $(".menu-section.main-nav.header-nav").remove();
+      // $(".widget_albatrteblist.container-wrapper").remove();
+      // $(".widget_categories.Alba-widget-categories.container-wrapper").remove();
+      // $(".sidebar.is-sticky").remove();
+      // $(".container-wrapper").remove();
+      // $(".lnfo").remove();
+      // $("#footer").remove();
+      // $(".grid-container").remove();
+      // $("#fixedban > div > div:nth-child(4)").remove();
+      // $("#Today > div.albaflex").wrapAll(
+      //   '<div style="pointer-events: none;"></div>'
+      // );
+      // $("#Tomorrow > div.albaflex").wrapAll(
+      //   '<div style="pointer-events: none;"></div>'
+      // );
 
-      //const content = $(".matches_frame");
-      //console.log(content.html());
-      res.send($.html());
+      fs.readFile("schedule.php", (err, data) => {
+        if (err) {
+          console.log(err);
+          res.send(err);
+        } else {
+          const $$ = cheerio.load(data);
+          $(".AlbaTableTitle").remove();
+          $$($(".AlbaSposrTable-sc").html()).appendTo(".AlbaSposrTable-sc");
+          res.send($$.html());
+        }
+      });
     })
     .catch((error) => {
       console.log(error);
